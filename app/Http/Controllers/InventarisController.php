@@ -4,12 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\inventaris;
 use App\Models\Permintaan;
-use App\Models\Category;
 use App\Models\User;
-use PDF;
+use App\Models\Category;
 // use App\Http\Requests\StoreinventarisRequest;
-use App\Http\Requests\UpdateinventarisRequest;
 use Illuminate\Http\Request;
+use App\Http\Requests\UpdateinventarisRequest;
 
 class InventarisController extends Controller
 {
@@ -121,7 +120,7 @@ class InventarisController extends Controller
         $inventaris = inventaris::all();
 
         // Generate PDF
-        $pdf = PDF::loadView('admin/inventaris/laporan', ['inventaris' => $inventaris]);
+        $pdf = \PDF::loadView('admin/inventaris/laporan', ['inventaris' => $inventaris]);
 
         // Download the PDF
         return $pdf->download('laporan-inventaris.pdf');

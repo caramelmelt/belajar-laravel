@@ -16,10 +16,14 @@
             <small>{{ auth()->user()?->name }}</small>
         </li>
         </a><hr>
-        <a href="{{ route('admin')}}"><li><i class="bi bi-house-door"></i> Dashboard</li></a>
-        <a href="{{ route('inventaris')}}"><li><i class="bi bi-boxes"></i> Data Inventaris</li></a>
+        @cannot('isKaryawan')
+          <a href="{{ route('admin')}}"><li><i class="bi bi-house-door"></i> Dashboard</li></a>
+          <a href="{{ route('inventaris')}}"><li><i class="bi bi-boxes"></i> Data Inventaris</li></a>
+        @endcannot
         <a href="{{ route('permintaan')}}"><li><i class="bi bi-info-circle-fill"></i> Permintaan</li></a>
-        <a href="{{ route('user')}}"><li><i class="bi bi-person-lines-fill"></i> Data User</li></a>
+        @cannot('isKaryawan')
+          <a href="{{ route('user')}}"><li><i class="bi bi-person-lines-fill"></i> Data User</li></a>
+        @endcannot
         <form action="/logout" method="post">
             @csrf
             <button type="submit" style="all:unset;" onclick="confirm('Apakah anda yakin ingin logout?')">
