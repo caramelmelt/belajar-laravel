@@ -5,17 +5,17 @@
 
 <h4 class="mb-4">{{ $title }}</h4>
 
-@cannot('isPemimpin')
 <!-- Button Tambah Data -->
 <button type="button" class="btn text-white" style="background-color:var(--accent)" data-bs-toggle="modal" data-bs-target="#addModal">
     <i class="bi bi-plus-square"></i> Tambah Data
 </button>
-@endcannot
 
 <!-- Generate Laporan-->
+@cannot('isKaryawan')
 <a href="{{ route('permintaan.laporan')}}"><button type="button" class="btn text-white float-end" style="background-color:var(--primary)" onclick="confirm('Apakah anda yakin ingin mencetak laporan?')">
     <i class="bi bi-printer"></i> Generate Laporan
 </button></a>
+@endcannot
 
 <!-- Modal Tambah Data -->
 <div class="modal fade" id="addModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -31,9 +31,9 @@
             <div class="form-floating mb-3">
                 <select name="users_id" id="floatingSelect" class="form-control  @error('users_id') is-invalid @enderror">
                     @foreach($users as $user)
-                        <option value="{{ $user->id }}">
-                            {{ $user->name }}
-                        </option>
+                    <option value="{{ $user->id }}" {{ auth()->user()->id == $user->id ? 'selected' : '' }}>
+                        {{ $user->name }}
+                    </option>
                     @endforeach
                 </select>
                 <label for="floatingSelect">Nama Anda</label>
@@ -74,9 +74,11 @@
                 @enderror
             </div>
 
+            @cannot('isKaryawan')
+            @cannot('isPemimpin')
             <div class="form-floating mb-3">
                 <select name="status" id="floatingSelect" class="form-control @error('status') is-invalid @enderror" value="{{ old('status') }}">
-                    <option value="Pending">Pending</option>
+                    <option value="Pending" selected>Pending</option>
                     <option value="Disetujui">Disetujui</option>
                     <option value="Ditolak">Ditolak</option>
                     <option value="Diproses">Diproses</option>
@@ -85,11 +87,13 @@
                 </select>
                 <label for="floatingSelect">Pilih Status</label>
                 @error('status')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
                 @enderror
             </div>
+            @endcannot
+            @endcannot
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
@@ -200,14 +204,16 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Tanggal Pengajuan</th>
                         <th>Nama Orang</th>
                         <th>Nama Barang</th>
                         <th>Jumlah</th>
                         <th>Alasan</th>
                         <th>Status</th>
-                        <th>Tanggal Pengajuan</th>
                         @cannot('isPemimpin')
-                        <th colspan="2">Aksi</th>
+                            @cannot('isKaryawan')
+                            <th colspan="2">Aksi</th>
+                            @endcannot
                         @endcannot
                     </tr>
                 </thead>
@@ -216,25 +222,27 @@
                         @foreach ($permintaan as $key => $record)
                         <tr>
                             <td>{{ $key+1 }}</td>
+                            <td>{{ \Carbon\Carbon::parse($record->created_at)->format('d-m-Y') }}</td>
                             <td>{{ $record->users->name}}</td>
                             <td>{{ $record->nama_barang}}</td>
                             <td>{{ $record->jumlah}}</td>
                             <td>{{ $record->alasan}}</td>
                             <td>{{ $record->status}}</td>
-                            <td>{{ \Carbon\Carbon::parse($record->created_at)->format('d-m-Y') }}</td>
-                            @cannot('isPemimpin')
+                            @cannot('isKaryawan')
                             <td>
                                 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editModal{{$record->id}}">
                                     <i class="bi bi-pencil-square"></i>
                                 </button>
                             </td>
+                            @cannot('isPemimpin')
                             <td>
-                                    <form action="{{ route('permintaan.delete', $record) }}" method="post">
-                                        @method('delete')
-                                        @csrf
-                                        <button type="submit" class="btn btn-danger" onclick="confirm('Apakah anda yakin?')"><i class="bi bi-trash3"></i></button>
-                                    </form>
+                                <form action="{{ route('permintaan.delete', $record) }}" method="post">
+                                    @method('delete')
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger" onclick="confirm('Apakah anda yakin?')"><i class="bi bi-trash3"></i></button>
+                                </form>
                             </td>
+                            @endcannot
                             @endcannot
                         </tr>
                         @endforeach

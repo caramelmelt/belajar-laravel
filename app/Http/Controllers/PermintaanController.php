@@ -38,8 +38,7 @@ class PermintaanController extends Controller
             'users_id' => 'required',
             'nama_barang' => 'required|max:255',
             'jumlah' => 'required',
-            'alasan' => 'required',
-            'status' => 'required'
+            'alasan' => 'required'
         ]);
         
         Permintaan::create($validatedData);

@@ -2,14 +2,14 @@
 @section('container')
 <section class="hero">
     <div class="container">
-        <div class="row">
+        <div class="row py-5">
             <div class="col-md-6">
                 <div class="copy" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="1000">
                     <div class="text-label">
                         Selamat Datang !
                     </div>
                     <div class="text-hero-bold">
-                        Aplikasi Inventaris <br>PT. Sinergi Nusantara
+                        InventarisPlus <br> PT. Sinergi Nusantara
                     </div>
                     <div class="text-hero-reguler">
                         Silahkan login untuk mengakses layanan Kami.
@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="col-md-6" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
-                <img src="{{ asset('img/inventory.png') }}" class="img-fluid" alt="img" style="width: 80%;height:auto;">
+                <img src="{{ asset('img/inventory.png') }}" class="img-fluid float-end" alt="img" style="width: 60%;height:auto;">
             </div>
         </div>
     </div>

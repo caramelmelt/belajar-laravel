@@ -47,6 +47,16 @@
                 @enderror
             </div>
             <div class="form-floating mb-3">
+                <input type="text" class="form-control @error('jabatan') is-invalid
+                @enderror" name="jabatan" id="jabatan" placeholder="Masukkan Nama Anda" autofocus required value="{{ old('jabatan')}}">
+                <label for="jabatan">Jabatan</label>
+                @error('jabatan')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            <div class="form-floating mb-3">
                 <select class="form-control" name="role_id" id="role_id" required>
                     <option value="">Pilih Role</option>
                     <option value="2">Karyawan</option>
@@ -54,9 +64,9 @@
                     <option value="1">Admin</option>
                 </select>
             </div>
-            <button type="submit" class="btn btn-success mt-3">Register</button>
+            <button type="submit" class="btn btn-success container-fluid mt-3">Register</button>
         </form>
-        <div class="text-hero-regular">Sudah punya akun? <a href="{{ route('register')}}">Login disini</a> </div>
+        <div class="text-hero-regular">Sudah punya akun? <a href="{{ route('login')}}">Login disini</a> </div>
     </div>
 </div>
 @endsection

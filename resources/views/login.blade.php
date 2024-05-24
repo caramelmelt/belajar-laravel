@@ -6,15 +6,13 @@
         <h3 class="text-center">Login ke Inventaris App </h3>
         <p class="text-center mb-5">Silakan masukkan informasi login Anda di bawah ini. Perhatikan bahwa ada tiga peran yang tersedia: karyawan, pemimpin, dan admin.</p>
         @if (session()->has('success'))
-            <div class="alert alert-success alert-dismissable fade show" role="alert">
+            <div class="alert alert-success fade show" role="alert">
                 {{ session('success')  }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
         @if (session()->has('loginError'))
-            <div class="alert alert-danger alert-dismissable fade show" role="alert">
+            <div class="alert alert-danger fade show" role="alert">
                 {{ session('loginError')  }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
 
