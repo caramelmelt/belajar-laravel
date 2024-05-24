@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserCOntroller;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\KaryawanController;
@@ -8,7 +10,6 @@ use App\Http\Controllers\PemimpinController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\InventarisController;
 use App\Http\Controllers\PermintaanCOntroller;
-use App\Http\Controllers\UserCOntroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +50,7 @@ Route::post('/register', [RegisterController::class,'store'])->name('register');
 
 // Admin Routes
 Route::middleware('auth')->prefix('admin')->group(function () {
+
     Route::get('/', [InventarisController::class, 'index'])->name('admin');
     //Menu Inventaris
     Route::prefix('inventaris')->group(function () {
