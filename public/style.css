@@ -153,6 +153,9 @@ body{
   background-color: var(--white);
   min-height: 80vh;
 }
+.grey-bg {  
+  background-color: #F5F7FA;
+}
 .btn{
     border-radius: 6px;
     font-size: var(--text-regular);

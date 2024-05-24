@@ -5,62 +5,97 @@
     <div class="wrapper">
         <div class="row">
             <div class="col-md-12">
-                <div class="card border-0" style="background-color: #023047;">
+                <div class="card border-0" style="background-color:var(--accent);">
                     <div class="card-body">
                         <h5 class="card-title text-white">{{$title}} | Anda login sebagai {{ Auth::user()->role->level }} !</h5>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-6 mt-5">
-                <div class="card border-primary">
-                    <h1><i class="bi bi-file-earmark-text-fill"></i></h1>
-                    <div class="card-body">
-                        <h1 class="card-text">70</h1>
-                        <h5 class="card-text">Barang</h5>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <a href="#" class="btn btn-primary">View More</a>
+            <div class="grey-bg container-fluid">
+                <section id="minimal-statistics">
+                <div class="row">
+                <div class="col-12 mt-3 mb-1">
+                    <h4 class="text-uppercase">statistik inventaris</h4>
+                    <p>Total data sementara.</p>
+                </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3 col-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="me-3"> 
+                                            <i class="icon-pencil primary font-large-2"></i>
+                                        </div>
+                                        <div class="text-end">
+                                            <h3>{{ $totalinventaris }}</h3>
+                                            <span>Inventaris</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-6 mt-5">
-                <div class="card border-danger">
-                    <h1><i class="bi bi-file-earmark-text-fill"></i></h1>
-                    <div class="card-body">
-                        <h1 class="card-text">4</h1>
-                        <h5 class="card-text">Permintaan</h5>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <a href="#" class="btn btn-primary">View More</a>
+                    <div class="col-sm-3 col-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="me-3"> 
+                                            <i class="icon-speech warning font-large-2"></i>
+                                        </div>
+                                        <div class="text-end">
+                                            <h3>{{ $totalpermintaan }}</h3>
+                                            <span>Permintaan</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-6 mt-5">
-                <div class="card border-success">
-                    <h1><i class="bi bi-file-earmark-text-fill"></i></h1>
-                    <div class="card-body">
-                        <h1 class="card-text">25</h1>
-                        <h5 class="card-text">Pengguna</h5>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <a href="#" class="btn btn-primary">View More</a>
+                    <div class="col-sm-3 col-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="me-3"> 
+                                            <i class="icon-graph success font-large-2"></i>
+                                        </div>
+                                        <div class="text-end">
+                                            <h3>{{  $totaluser }}</h3>
+                                            <span>Users</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 mt-5">
-                <div class="card border-warning">
-                    <h1><i class="bi bi-file-earmark-text-fill"></i></h1>
-                    <div class="card-body">
-                        <h1 class="card-text">2</h1>
-                        <h5 class="card-text">Laporan</h5>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <a href="#" class="btn btn-primary">View More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
+                    </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header text-white font-medium-3" style="background-color:var(--accent)">
+                                Selamat Datang di InventarisPlus
+                            </div>
+                                <div class="card-body px-5 py-4">
+                                 <span>Aplikasi ini bertujuan untuk melakukan manajemen barang atau aset perusahaan dengan lebih efisien dan terstruktur.</span><br><br>
+                                 <span class="font-medium-1 ">Fitur Utama :</span>
+                                 <ul>
+                                    <li>Pencatatan Inventaris: <br> Mencatat barang/aset baru ke dalam sistem dengan informasi terkait seperti nama, kategori, jumlah, dan deskripsi tambahan.</li>
+                                    <li>Pengajuan Permintaan: <br> Pengguna dapat mengakses fitur pengajuan inventaris dan melacak status pengajuan.</li>
+                                    <li>Pembuatan Laporan: <br> Membuat laporan inventaris baik keseluruhan maupun khusus berdasarkan kategori, lokasi, atau waktu tertentu.</li>
+                                 </ul>
+                                 <span class="font-medium-1">Bantuan dan Dukungan :</span><br>
+                                 <span>Jika Anda mengalami masalah atau membutuhkan bantuan dalam menggunakan aplikasi, jangan ragu untuk menghubungi tim dukungan kami di [email protected] atau melalui layanan chat yang tersedia di aplikasi.</span>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                </section>
+            </div>
 
         </div>
     </div>

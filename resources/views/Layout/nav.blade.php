@@ -6,14 +6,14 @@
       <span></span>
       <span></span>
       <ul id="menu">
-        <a href="#">
+        <a>
         <li>
-            <i class="bi bi-box"></i>
-            Inventaris App
+            <img src="{{ asset('img/inventory.png') }}" style="height:20px" alt="LOGO">
+            InventarisPlus
         </li></a>
         <a>
         <li>
-            <small>Welcome, {{ auth()->user()?->name }}</small>
+            <small>{{ auth()->user()?->name }}</small>
         </li>
         </a><hr>
         <a href="{{ route('admin')}}"><li><i class="bi bi-house-door"></i> Dashboard</li></a>

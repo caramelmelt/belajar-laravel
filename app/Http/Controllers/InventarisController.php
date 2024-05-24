@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\inventaris;
+use App\Models\Permintaan;
 use App\Models\Category;
 use App\Models\User;
 use PDF;
@@ -19,7 +20,9 @@ class InventarisController extends Controller
     {
         return view ('admin/index', [
             'title' => 'Dashboard',
-            'inventaris' => Inventaris::all()
+            'totalinventaris' => inventaris::count(),
+            'totalpermintaan' => Permintaan::count(),
+            'totaluser' => User::count(),
         ]);
     }
     public function showInventaris()

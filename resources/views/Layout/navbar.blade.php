@@ -1,9 +1,9 @@
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-white pt-3">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white pt-2">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img src="{{ asset('img/inventory.png') }}" alt="LOGO">
-                <span class="mx-3">Inventaris App</span>
+                <span class="mx-3">InventarisPlus</span>
             </a>
             <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <i class='bx bx-menu'></i>
@@ -12,7 +12,7 @@
             <div class="navbar-nav ms-auto">
                 @auth
                 <a class="nav-link" href="#" role="button" aria-expanded="false">
-                    Welcome back, {{ auth()->user()->name }}
+                    Welcome back, {{ auth()->user()->name }} | {{ auth()->user()->role->level }}
                 </a>
                 @else
                     @if(Route::currentRouteName() == 'login' || Route::currentRouteName() == 'register')
