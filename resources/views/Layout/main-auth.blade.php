@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PT. Sinergi Nusantara | {{ $title }}</title>
+    <title>YADA WASISTA | {{ $title }}</title>
     <!-- boostrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- aos animation -->
@@ -20,9 +20,7 @@
 </head>
 <body>
     @include('Layout.nav')
-    @include('Layout.navbar')
     @yield('container')
-    @include('Layout.footer')
     {{-- JavaScript --}}
     @include('components.script')
 </body>

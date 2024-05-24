@@ -19,10 +19,8 @@
     
 </head>
 <body>
-    @include('Layout.nav')
     @include('Layout.navbar')
     @yield('container')
-    @include('Layout.footer')
     {{-- JavaScript --}}
     @include('components.script')
 </body>

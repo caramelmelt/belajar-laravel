@@ -2,9 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {    
-    --primary: #FBC257;
-    --primary-light: #FCCC73;
-    --dark-brown: #341413;
+    --primary: #fb8500;
+    --primary-light: #ffb703;
+    --secondary: #023047;
+    --accent:#219ebc;
+    --dark-brown:#341413;
+    --dark-blue: #050316;
     --gray-1: #798092;
     --gray-2:#E6E6ED;
     --white: #FFFFFF;
@@ -30,312 +33,199 @@
 
 body{
     font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    /* background-image: linear-gradient(to right top, #fccc73, #fdd589, #fedd9f, #fee6b5, #ffeecb); */
+  }
+
+#menuToggle
+{
+  display: inline-block;
+  margin-right: 10px; 
+  position: relative;
+  top: 50px;
+  left: 50px;
+  z-index: 1;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#menuToggle a
+{
+  text-decoration: none;
+  color: var(--white);
+  transition: color 0.3s ease;
+}
+
+#menuToggle a:hover
+{
+  color: var(--primary-light);
+}
+
+
+#menuToggle input
+{
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;
+  cursor: pointer;
+  opacity: 0; /* hide this */
+  z-index: 2; /* and place it over the hamburger */
+  -webkit-touch-callout: none;
+}
+#menuToggle span
+{
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+  background: #cdcdcd;
+  border-radius: 3px;
+  z-index: 1;
+  transform-origin: 4px 0px;
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.55s ease;
+}
+
+#menuToggle span:first-child
+{
+  transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2)
+{
+  transform-origin: 0% 100%;
+}
+
+#menuToggle input:checked ~ span
+{
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: var(--white);
+}
+
+#menuToggle input:checked ~ span:nth-last-child(3)
+{
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+#menuToggle input:checked ~ span:nth-last-child(2)
+{
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+#menu
+{
+  position: absolute;
+  width: 300px;
+  height: 100vh;
+  margin: -100px 0 0 -50px;
+  padding: 50px;
+  padding-top: 125px;
+  background: var(--dark-blue);
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  /* to stop flickering of text in safari */
+  transform-origin: 0% 0%;
+  transform: translate(-100%, 0);
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+#menu li
+{
+  padding: 10px 0;
+  font-size: 20px;
+}
+
+#menuToggle input:checked ~ ul
+{
+  transform: none;
+}
+
+.wrapper{
+  margin: 0.5rem 5rem;
+  padding: 1rem 2rem;
+  background-color: var(--white);
+  min-height: 80vh;
 }
 .btn{
-    padding: 15px 25px;
     border-radius: 6px;
-    font-size: var(--text-medium);
+    font-size: var(--text-regular);
     font-weight: var(--font-weight-medium);
 }
-.btn-primary{
-    background-color: var(--primary);
-    border: none;
+.footer{
+  background-color: var(--gray-1);
+  color: var(--white);
 }
-.btn-primary:focus, .btn-primary:hover{
-    background-color: var(--primary-light) !important;
-}
-.btn-secondary{
-    background-color: var(--gray-2);
-    color: var(--gray-1);
-    border: none;
-}
-.btn-secondary:focus {
-    background-color: var(--white);
-    box-shadow: 0px 4px 19px rgba(0, 0, 0, 0.5) !important;
-    color: var(--gray-1);
-}
-.btn-secondary:hover {
-    background-color: var(--white) !important;
-    box-shadow: 0px 4px 19px rgba(0, 0, 0, 0.5) !important;
-    color: var(--gray-1);
-}
-
-/* HAMBURGER NAVBAR */
-input[type="checkbox"]:checked ~ nav {
-  transform: translateX(0);
-  z-index: 40;
-}
-input[type=checkbox] {
-  box-sizing: border-box;
-  display: none;
-  transition: all 0.25s;
-}
-.menuIconToggle {
-  box-sizing: border-box;
-  cursor: pointer;
-  position: fixed;
-  z-index: 40;
-  height: 100%;
-  width: 100%;
-  top: 35px;
-  left: 30px;
-  height: 22px;
-  width: 22px;
-  transition: all 0.3s;
-}
-.hamb-line {
-  box-sizing: border-box;
-  position: absolute;
-  height: 3px;
-  width: 100%;
-  background-color: #444;
-  transition: all 0.25s;
-}
-.hor {
-  transition: all 0.3s;
-  box-sizing: border-box;
-  position: relative;
-  float: left;
-  margin-top: 3px;
-}
-.dia.part-1 {
-  position: relative;
-  box-sizing: border-box;
-  float: left;
-  transition: all .25s;
-}
-.dia.part-2 {
-  box-sizing: border-box;
-  position: relative;
-  float: left;
-  margin-top: 3px;
-  transition: all .25s;
-}
-input[type=checkbox]:checked ~ .menuIconToggle > .hor {
-  box-sizing: border-box;
-  opacity: 0;
-  transition: all .25s;
-}
-input[type=checkbox]:checked ~ .menuIconToggle > .dia.part-1 {
-  box-sizing: border-box;
-  transform: rotate(135deg);
-  margin-top: 8px;
-  transition: all .25s;
-}
-input[type=checkbox]:checked ~ .menuIconToggle > .dia.part-2 {
-  box-sizing: border-box;
-  transform: rotate(-135deg);
-  margin-top: -9px;
-  transition: all .25s;
-}
-
-/* HAMBURGER MENU SIDEBAR */
-
-.sidebar {
-  height: 100%;
-  position: fixed;
-  left: 0;
-  width: 320px;
-  margin-top: 90px;
-  transform: translateX(-320px);
-  transition: transform 260ms ease-in-out;
-  background-color: white;
-  border-left: 1px solid #eee;
-}
-.sidebar ul {
-  margin:0;
-  padding:0;
-  border-top: 1px solid #eee;
-}
-.sidebar ul>li {
-  list-style: none;
-  color: #fff;
-  text-transform: uppercase;
-  font-weight: bold;
-  padding: 20px;
-  cursor: pointer;
-  border-bottom: 1px solid #eee;
-  transition: .25s
-}
-.sidebar ul>li span {
-  display: block;
-  font-size: 14px;
-  color: #353535;
-}
-.sidebar ul>li a {
-  color: #353535;
-  text-transform: uppercase;
-  font-weight: bold;
-  cursor: pointer;
+.btn-explore{
+  background: #fffcd5;
+  box-shadow: 4px 4px var(--primary-light), 9px 9px #151515;
+  color: #151515;
+  text-transform: lowercase;
+  border: solid 2px #151515;
   text-decoration: none;
+  padding: 15px 28px;
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 700;
+  position: relative;
+  z-index: 1;
+  transition: 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  cursor: pointer;
+  overflow: hidden;
+  transition-delay: 0s !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1.5px;
+  font-family: sans-serif;
 }
-.sidebar ul>li:hover {
-  background-color: #dddddd;
+.btn-explore::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  right: 0;
+  width: 0%;
+  height: 100%;
+  background: #151515;
+  z-index: -1;
+  transition: 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
-.sidebar li.sidebar-signup {
-  list-style: none;
-  background-color: #00B2D3;
+.btn-explore:hover::before {
+  width: 100%;
+  left: 0;
+  right: unset;
 }
-.sidebar ul>li.sidebar-signup span {
-  color: #00B2D3;
+.btn-explore:hover {
+  box-shadow: 0 0 #ffe00b, 0 0 #151515;
+  color: white;
+} 
+
+.card-landing{
+  padding: 3em 8em;
 }
-.sidebar ul>li.sidebar-signup a {
-  color: #ffffff;
+.btn-accent{
+  background-color: var(--accent);
+  color: var(--white);
+  transition: background-color 0.3s, color 0.3s;
 }
-.sidebar ul>li.sidebar-signup:hover {
-  background-color: #006375;
+.btn-accent, .btn-light{
+  border-radius: 50px;
+}
+.btn-accent:hover{
+  background-color: #1c7e97;
+  color: var(--white);
 }
 
-/* Code from https://codepen.io/sergey_ioffe/pen/VqLJqa */
-/* html, body {
-    overflow-x: hidden
-  }
-  body {
-    padding: 0;
-    margin: 0;
-    font-family: sans-serif
-  }
-  .top-item {
-    margin-top: 100px;
-  }
-  header {
-    margin: 0;
-    width: 100%;
-    background-color: #fff;
-    box-shadow: 0px 0px 5px 0px #ddd;
-    position: fixed;
-    height: 90px!important;
-    z-index: 20;
-  }
-  nav {
-    height: 100%;
-    position: fixed;
-    left: 0;
-    width: 320px;
-    margin-top: 90px;
-    transform: translateX(-320px);
-    transition: transform 260ms ease-in-out;
-    background-color: white;
-    border-left: 1px solid #eee;
-  }
-  nav ul {
-    margin:0;
-    padding:0;
-    border-top: 1px solid #eee;
-  }
-  nav ul>li {
-    list-style: none;
-    color: #fff;
-    text-transform: uppercase;
-    font-weight: bold;
-    padding: 20px;
-    cursor: pointer;
-    border-bottom: 1px solid #eee;
-    transition: .25s
-  }
-  nav ul>li span {
-    display: block;
-    font-size: 14px;
-    color: #353535;
-  }
-  nav ul>li a {
-    color: #353535;
-    text-transform: uppercase;
-    font-weight: bold;
-    cursor: pointer;
-    text-decoration: none;
-  }
-  nav ul>li:hover {
-    background-color: #dddddd;
-  }
-  nav li#nav-signup {
-    list-style: none;
-    background-color: #00B2D3;
-  }
-  nav ul>li#nav-signup span {
-    color: #00B2D3;
-  }
-  nav ul>li#nav-signup a {
-    color: #ffffff;
-  }
-  nav ul>li#nav-signup:hover {
-    background-color: #006375;
-  }
-  input[type="checkbox"]:checked ~ nav {
-    transform: translateX(0);
-    z-index: 40;
-  }
-  input[type=checkbox] {
-    box-sizing: border-box;
-    display: none;
-    transition: all 0.25s;
-  }
-  .menuIconToggle {
-    box-sizing: border-box;
-    cursor: pointer;
-    position: fixed;
-    z-index: 40;
-    height: 100%;
-    width: 100%;
-    top: 35px;
-    left: 30px;
-    height: 22px;
-    width: 22px;
-    transition: all 0.3s;
-  }
-  .hamb-line {
-    box-sizing: border-box;
-    position: absolute;
-    height: 3px;
-    width: 100%;
-    background-color: #444;
-    transition: all 0.25s;
-  }
-  .hor {
-    transition: all 0.3s;
-    box-sizing: border-box;
-    position: relative;
-    float: left;
-    margin-top: 3px;
-  }
-  .dia.part-1 {
-    position: relative;
-    box-sizing: border-box;
-    float: left;
-    transition: all .25s;
-  }
-  .dia.part-2 {
-    box-sizing: border-box;
-    position: relative;
-    float: left;
-    margin-top: 3px;
-    transition: all .25s;
-  }
-  input[type=checkbox]:checked ~ .menuIconToggle > .hor {
-    box-sizing: border-box;
-    opacity: 0;
-    transition: all .25s;
-  }
-  input[type=checkbox]:checked ~ .menuIconToggle > .dia.part-1 {
-    box-sizing: border-box;
-    transform: rotate(135deg);
-    margin-top: 8px;
-    transition: all .25s;
-  }
-  input[type=checkbox]:checked ~ .menuIconToggle > .dia.part-2 {
-    box-sizing: border-box;
-    transform: rotate(-135deg);
-    margin-top: -9px;
-    transition: all .25s;
-  }
-  /* @media screen and (max-width: 640px) {
-   nav {
-      height: 100%;
-      width: 100%;
-      transform: translateX(100%);
-    }  */
  
 /* NAVBAR */
+.navbar-brand{
+  margin-right: auto;
+}
 .navbar-brand img{
     height: 50px;
     width: auto;
@@ -346,7 +236,7 @@ input[type=checkbox]:checked ~ .menuIconToggle > .dia.part-2 {
     color:var(--dark-brown);
 }
 .navbar{
-    padding: 20px 0;
+    padding: 0;
 }
 .bx{
     margin-right: 10px;
@@ -359,23 +249,34 @@ section.hero{
 .text-label,.text-hero-bold,.text-hero-regular{
     margin: 20px 0;
 }
+.text-footer {
+  color: var(--white);
+  font-size: var(--text-light);
+  font-weight: var(--font-weight-light);
+}
 .text-label {
     color: var(--primary);
-    font-size: var(--text-regular);
+    font-size: var(--header-4);
     font-weight: var(--font-weight-regular);
     line-height: 31px;
 }
 .text-hero-bold{
-    color: var(--dark-brown);
-    font-size: var(--header-1);
+    color: var(--dark-blue);
+    font-size: var(--header-3);
     font-weight: var(--font-weight-bold);
-    line-height: 74px;
+    line-height: 60px;
 }
 .text-hero-regular{
     color: var(--gray-1);
     font-size: var(--text-regular);
     font-weight: var(--font-weight-regular);
     line-height: 31px;
+}
+.text-header{
+  color: var(--dark-blue);
+  font-size: var(--header-3);
+  font-weight: var(--font-weight-semi-bold);
+  line-height: 31px;
 }
 .cta{
     margin-top:1em;

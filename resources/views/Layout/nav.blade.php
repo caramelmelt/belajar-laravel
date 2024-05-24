@@ -1,16 +1,32 @@
-<header></header>
-<input type="checkbox" id="openSideMenu" class="openSideMenu">
-<label for="openSideMenu" class="menuIconToggle">
-  <div class="hamb-line dia part-1"></div>
-  <div class="hamb-line hor"></div>
-  <div class="hamb-line dia part-2"></div>
-</label>
-<nav>
-  <ul>
-    <li><a href="#">Menu Item 1</a></li>
-    <li><a href="#">Menu Item 2</a></li>
-    <li><a href="#">Menu Item 3</a></li>
-    <li><a href="#">Menu Item 4</a></li>
-  </ul>
-</nav>
-<h1>Responsive CSS Side Toggle Hamburger Menu</h1>
+   @auth
+   <nav role="navigation">
+    <div id="menuToggle">
+      <input type="checkbox" />
+      <span></span>
+      <span></span>
+      <span></span>
+      <ul id="menu">
+        <a href="#">
+        <li>
+            <i class="bi bi-box"></i>
+            Inventaris App
+        </li></a>
+        <a>
+        <li>
+            <small>Welcome, {{ auth()->user()?->name }}</small>
+        </li>
+        </a><hr>
+        <a href="{{ route('admin')}}"><li><i class="bi bi-house-door"></i> Dashboard</li></a>
+        <a href="{{ route('inventaris')}}"><li><i class="bi bi-boxes"></i> Data Inventaris</li></a>
+        <a href="{{ route('permintaan')}}"><li><i class="bi bi-info-circle-fill"></i> Permintaan</li></a>
+        <a href="{{ route('user')}}"><li><i class="bi bi-person-lines-fill"></i> Data User</li></a>
+        <form action="/logout" method="post">
+            @csrf
+            <button type="submit" style="all:unset;" onclick="confirm('Apakah anda yakin ingin logout?')">
+                <a><li><i class="bi bi-box-arrow-right"></i> Logout</li></a>
+            </button>
+        </form>
+      </ul>
+    </div>
+  </nav>
+   @endauth
