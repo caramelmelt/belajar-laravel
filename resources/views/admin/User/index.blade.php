@@ -5,10 +5,12 @@
 
 <h4 class="mb-4">{{ $title }}</h4>
 
+@cannot('isPemimpin')
 <!-- Button Tambah Data -->
 <button type="button" class="btn text-white" style="background-color:var(--accent)" data-bs-toggle="modal" data-bs-target="#addModal">
     <i class="bi bi-plus-square"></i> Tambah Data
 </button>
+@endcannot
 
 <!-- Generate Laporan-->
 <a href="{{ route('user.laporan')}}"><button type="button" class="btn text-white float-end" style="background-color:var(--primary)" onclick="confirm('Apakah anda yakin ingin mencetak laporan?')">
@@ -208,7 +210,9 @@
                         <th>Email</th>
                         <th>Jabatan</th>
                         <th>Role</th>
+                        @cannot('isPemimpin')
                         <th colspan="2">Aksi</th>
+                        @endcannot
                     </tr>
                 </thead>
                     <tbody>
@@ -221,6 +225,7 @@
                             <td>{{ $record->email}}</td>
                             <td>{{ $record->jabatan}}</td>
                             <td>{{ $record->role->level}}</td>
+                            @cannot('isPemimpin')
                             <td>
                                 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editModal{{$record->id}}">
                                     <i class="bi bi-pencil-square"></i>
@@ -233,6 +238,7 @@
                                         <button type="submit" class="btn btn-danger" onclick="confirm('Apakah anda yakin?')"><i class="bi bi-trash3"></i></button>
                                     </form>
                             </td>
+                            @endcannot
                         </tr>
                         @endforeach
                         @else
